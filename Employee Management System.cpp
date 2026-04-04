@@ -1,64 +1,77 @@
 #include<iostream>
 using namespace std;
 
-class employee{
-
-private:
-int id;
-string name;
-double salary;
+class employe{
 
 public:
+int id;
+string name;
+int salary;
+char ch;
 
-employee(){
+employe(){
+    cout<<"Enter id: ";
+    cin>>id;
 
-cout<<"Enter your id: "<<endl;
-cin>>id;
+    cout<<"Enter name: ";
+    cin>>name;
 
-cout<<"Enter your name: "<<endl;
-cin>>name;
+    cout<<"Enter salary: ";
+    cin>>salary;
 
-cout<<"Enter your salary: "<<endl;
-cin>>salary;
-
-}
-
-double updatesalary(double s){
-
-return salary + s;
-
+    cout<<"Enter status (m/d): ";
+    cin>>ch;
 }
 
 void display(){
+    cout<<"ID: "<<id<<endl;
+    cout<<"Name: "<<name<<endl;
+    cout<<"Salary: "<<salary<<endl;
+    cout<<"Status: "<<ch<<endl;
+}
 
-cout<<"ID : "<<id<<endl;
-cout<<"NAME : "<<name<<endl;
-cout<<"SALARY : "<<salary<<endl;
+};
 
-double inc;
+class manager : public employe{
 
-cout<<"Enter increment amount: "<<endl;
-cin>>inc;
+public:
+void bonus(){
+    salary = salary + 3000;
+    cout<<"Salary with bonus: "<<salary<<endl;
+}
 
-cout<<"Updated salary: "<<updatesalary(inc)<<endl;
+};
 
+class developer : public employe{
+
+public:
+void payment(){
+
+    int time;
+    cout<<"Enter extra work time: ";
+    cin>>time;
+
+    if(time>0 && time<2){
+        salary = salary + 2000;
+    }
+
+    else if(time>=2 && time<5){
+        salary = salary + 5000;}
+
+    else{
+        salary = salary + 10000;}
+
+    cout<<"Salary is "<<salary<<endl;
 }
 
 };
 
 int main(){
 
-int n;
+manager m;
+m.bonus();
 
-cout<<"Enter the number of employee: ";
-cin>>n;
-
-employee e[n];
-
-for(int i=0;i<n;i++){
-
-e[i].display();
-
-}
+developer d;
+d.payment();
 
 }
